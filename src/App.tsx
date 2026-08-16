@@ -24,14 +24,14 @@ export default function App() {
     <div className="min-h-screen bg-[#08090B] text-[#F5F4F1] relative overflow-hidden">
       <Background />
 
-      <div className="relative max-w-6xl mx-auto px-6 md:px-10">
+      <main className="relative max-w-6xl mx-auto px-6 md:px-10">
         <Navbar />
         <Hero />
         <Divider />
         <Cards />
         <AboutSection />
         <Footer />
-      </div>
+      </main>
     </div>
   );
 }
