@@ -1,0 +1,179 @@
+/* ============================================================
+   Fonts
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,500&display=swap');
+
+/* ============================================================
+   Tailwind v4
+   ============================================================ */
+@import 'tailwindcss';
+
+/* ============================================================
+   Theme tokens (consumed by Tailwind utilities)
+   ============================================================ */
+@theme {
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-serif:   Fraunces, serif;
+  --font-sans:    Inter, system-ui, sans-serif;
+}
+
+/* ============================================================
+   Base / Reset
+   ============================================================ */
+:root {
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  background: #0a0b0d;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+/* ============================================================
+   Font utility classes (mirror what the build output used)
+   ============================================================ */
+.font-display {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+}
+
+.font-serif {
+  font-family: Fraunces, serif;
+}
+
+/* ============================================================
+   Selection colour
+   ============================================================ */
+::selection {
+  color: #fff;
+  background: rgba(228, 54, 43, 0.35);
+}
+
+/* ============================================================
+   Focus ring
+   ============================================================ */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #8b9cff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Smooth scroll
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================================
+   Reduced-motion overrides
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ============================================================
+   Background glow orbs
+   ============================================================ */
+.glow-red {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  max-width: 720px;
+  max-height: 720px;
+  top: -18%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(228, 54, 43, 0.18) 0%, transparent 65%);
+  animation: driftRed 18s ease-in-out infinite alternate;
+  filter: blur(20px);
+}
+
+.glow-blue {
+  position: absolute;
+  width: 55vw;
+  height: 55vw;
+  max-width: 720px;
+  max-height: 720px;
+  top: -8%;
+  right: -12%;
+  background: radial-gradient(circle, rgba(79, 108, 247, 0.18) 0%, transparent 65%);
+  animation: driftBlue 22s ease-in-out infinite alternate;
+  filter: blur(20px);
+}
+
+@keyframes driftRed {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(4%, 6%); }
+}
+
+@keyframes driftBlue {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(-5%, 4%); }
+}
+
+/* ============================================================
+   Grain overlay
+   ============================================================ */
+.grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   Reveal animations (staggered entrance)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-1 { animation-delay: 0.05s; }
+.reveal-2 { animation-delay: 0.16s; }
+.reveal-3 { animation-delay: 0.26s; }
+.reveal-4 { animation-delay: 0.36s; }
+
+@keyframes revealUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-red,
+  .glow-blue {
+    animation: none;
+  }
+
+  .reveal {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
